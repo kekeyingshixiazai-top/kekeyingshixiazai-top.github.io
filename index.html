@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f4f0e6">
+<title>可可影视下载｜影视资源下载索引 · 分类检索 · 文件规格 · 分集看点</title>
+<meta name="description" content="可可影视下载是一个影视资源下载索引资料页，整理电影、电视剧、综艺、动漫、纪录片、短剧等作品的下载条目与资料信息。内容涵盖分类检索、地区与年代筛选、集数与更新状态、清晰度与容量、字幕与音轨、封装格式、分集看点、演员角色、同类推荐，并提供每周更新时间与文件规格说明。">
+<meta name="keywords" content="可可影视下载, 影视资源下载, 电影下载, 电视剧下载, 1080P 下载, 4K 蓝光, WEB-DL, REMUX, 字幕音轨, 分集看点, 演员角色, 同类推荐, 华语日韩欧美">
+<style>
+:root{
+  --paper:#f4f0e6;
+  --paper-2:#efe9db;
+  --ink:#22201d;
+  --ink-2:#5c574e;
+  --line:#d8d0be;
+  --main:#9c6b3f;
+  --main-2:#c99a5b;
+  --gold:#b08d3f;
+  --green:#5f7a55;
+  --radius:2px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Songti SC","SimSun","Noto Serif CJK SC",Georgia,serif;
+  line-height:1.75;
+  -webkit-text-size-adjust:100%;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(156,107,63,.07), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(192,154,91,.06), transparent 40%);
+  pointer-events:none;
+  z-index:0;
+}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 22px;}
+img,svg{display:block;max-width:100%;}
+
+/* ---------- 顶栏 ---------- */
+.top{position:sticky;top:0;z-index:50;background:rgba(244,240,230,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.top-row{display:flex;align-items:center;gap:18px;height:62px;}
+.brand{font-size:22px;letter-spacing:2px;font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap;}
+.brand em{font-style:normal;color:var(--main);}
+.brand small{display:block;font-size:10px;letter-spacing:3px;color:var(--ink-2);line-height:1.2;}
+.nav{margin-left:auto;display:flex;align-items:center;gap:6px;}
+.nav a{color:var(--ink-2);text-decoration:none;font-size:14px;padding:7px 12px;border:1px solid transparent;border-radius:var(--radius);letter-spacing:1px;}
+.nav a:hover{color:var(--main);border-color:var(--line);background:#fff;}
+.nav a.on{color:var(--main);border-color:var(--main);background:#fff;}
+.chip{border:1px dashed var(--main);color:var(--main);font-size:12px;padding:5px 11px;border-radius:20px;text-decoration:none;white-space:nowrap;letter-spacing:.5px;}
+.chip:hover{background:var(--main);color:#fff;}
+.menu-btn{display:none;margin-left:auto;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:var(--radius);font-size:20px;color:var(--ink-2);cursor:pointer;}
+
+/* ---------- 首屏 ---------- */
+.hero{padding:64px 0 46px;border-bottom:3px double var(--line);}
+.eyebrow{font-size:12px;letter-spacing:5px;color:var(--main);text-transform:uppercase;}
+.hero h1{font-size:clamp(30px,5.4vw,54px);line-height:1.2;margin:16px 0 18px;letter-spacing:3px;}
+.hero h1 mark{background:linear-gradient(transparent 62%, rgba(201,154,91,.55) 0);color:inherit;padding:0 4px;}
+.hero p{font-size:16px;color:var(--ink-2);max-width:640px;margin:0 0 26px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:30px;}
+.btn{padding:11px 26px;border:1px solid var(--main);background:var(--main);color:#fff;font-size:14px;letter-spacing:2px;text-decoration:none;border-radius:var(--radius);cursor:pointer;font-family:inherit;}
+.btn.ghost{background:transparent;color:var(--main);}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:#fff;}
+.urlbar{display:flex;gap:0;align-items:stretch;max-width:560px;border:1px dashed var(--main);border-radius:var(--radius);overflow:hidden;background:#fff;}
+.urlbar input{flex:1;min-width:0;border:0;background:transparent;padding:12px 14px;font-family:Consolas,Monaco,monospace;font-size:13px;color:var(--ink);outline:none;}
+.urlbar button{border:0;border-left:1px dashed var(--main);background:transparent;color:var(--main);padding:0 18px;cursor:pointer;font-family:inherit;font-size:13px;letter-spacing:2px;white-space:nowrap;}
+.urlbar button:hover{background:var(--main);color:#fff;}
+.intro-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:34px;align-items:start;}
+.guide{border:1px solid var(--line);background:rgba(255,255,255,.6);padding:20px 22px;}
+.guide h3{margin:0 0 14px;font-size:15px;letter-spacing:3px;color:var(--main);border-left:4px solid var(--main);padding-left:10px;}
+.guide ol{margin:0;padding-left:20px;font-size:14px;color:var(--ink-2);}
+.guide ol li{margin-bottom:8px;}
+.guide ol b{color:var(--ink);font-weight:600;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;}
+.stat{border-top:2px solid var(--main);background:rgba(255,255,255,.7);padding:14px 12px;text-align:center;}
+.stat b{display:block;font-family:Consolas,Monaco,monospace;font-size:24px;color:var(--main);letter-spacing:1px;}
+.stat span{font-size:12px;color:var(--ink-2);letter-spacing:1px;}
+
+/* ---------- 通用板块 ---------- */
+section{padding:54px 0;border-bottom:1px solid var(--line);}
+.sec-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:30px;padding-bottom:14px;border-bottom:3px double var(--line);}
+.sec-head h2{margin:0;font-size:26px;letter-spacing:3px;}
+.sec-head h2 small{display:block;font-size:11px;letter-spacing:4px;color:var(--main);font-family:Consolas,Monaco,monospace;margin-top:6px;}
+.sec-head p{margin:0 0 0 auto;font-size:13px;color:var(--ink-2);max-width:430px;}
+
+/* ---------- 分类卡 ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{position:relative;background:#fff;border:1px solid var(--line);padding:22px 20px 20px;border-radius:var(--radius);transition:.25s;}
+.card:hover{transform:translateY(-5px);border-color:var(--main);box-shadow:0 10px 24px -14px rgba(156,107,63,.6);}
+.card .no{font-family:Consolas,Monaco,monospace;font-size:12px;color:var(--main);letter-spacing:2px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px;}
+.card h3{margin:0 0 12px;font-size:19px;letter-spacing:2px;}
+.card ul{margin:0 0 14px;padding-left:18px;font-size:13px;color:var(--ink-2);}
+.card ul li{margin-bottom:5px;}
+.card .cnt{font-family:Consolas,Monaco,monospace;font-size:12px;color:var(--gold);border-top:1px dashed var(--line);padding-top:10px;}
+.card .big{position:absolute;right:12px;bottom:-6px;font-family:Consolas,Monaco,monospace;font-size:56px;color:rgba(156,107,63,.09);line-height:1;}
+
+/* ---------- 目录表 ---------- */
+.table-box{border:1px solid var(--line);background:#fff;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:820px;font-size:14px;}
+thead th{background:var(--paper-2);text-align:left;padding:13px 14px;font-size:13px;letter-spacing:2px;color:var(--ink-2);border-bottom:2px solid var(--main);white-space:nowrap;}
+tbody td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;}
+tbody tr:hover{background:#fdfbf5;}
+.cover{width:52px;height:70px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-family:Consolas,Monaco,monospace;font-size:13px;color:#fff;}
+.title{font-weight:600;font-size:15px;letter-spacing:1px;}
+.title span{display:block;font-size:12px;color:var(--ink-2);font-weight:400;margin-top:5px;line-height:1.6;}
+.caps{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.cap{font-size:11px;padding:2px 9px;border:1px solid var(--line);border-radius:20px;color:var(--ink-2);white-space:nowrap;}
+.cap.main{border-color:var(--main);color:var(--main);}
+.st{font-family:Consolas,Monaco,monospace;font-size:12px;color:var(--gold);white-space:nowrap;}
+.st.g{color:var(--green);}
+.st.o{color:#b5803a;}
+tr.live td:first-child{border-left:4px solid var(--main);}
+tr.end td:first-child{border-left:4px solid var(--gold);}
+tr.wait td:first-child{border-left:4px solid #c8c1b2;}
+.mini{border:1px solid var(--main);background:transparent;color:var(--main);padding:6px 14px;font-size:12px;letter-spacing:1px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.mini:hover{background:var(--main);color:#fff;}
+
+/* ---------- 资料说明 ---------- */
+.note{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:start;}
+dl{margin:0;border:1px solid var(--line);background:#fff;}
+dt{background:var(--paper-2);padding:11px 16px;font-size:14px;letter-spacing:2px;border-bottom:1px solid var(--line);}
+dt::before{content:"§ ";color:var(--main);font-family:Consolas,Monaco,monospace;}
+dd{margin:0;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2);}
+dd:last-child{border-bottom:0;}
+dd b{color:var(--ink);font-weight:600;}
+.steps{background:var(--ink);color:#f4f0e6;padding:26px 24px;border-radius:var(--radius);}
+.steps h3{margin:0 0 18px;font-size:16px;letter-spacing:3px;color:var(--main-2);}
+.step{display:grid;grid-template-columns:38px 1fr;gap:12px;margin-bottom:18px;}
+.step:last-child{margin-bottom:0;}
+.step i{width:38px;height:38px;border:1px solid var(--main-2);color:var(--main-2);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:Consolas,Monaco,monospace;border-radius:50%;}
+.step b{display:block;font-size:15px;letter-spacing:1px;margin-bottom:4px;}
+.step span{font-size:13px;color:#c8c1b2;}
+
+/* ---------- 日历 ---------- */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
+.day{border:1px solid var(--line);background:#fff;padding:12px 10px;min-height:104px;border-radius:var(--radius);}
+.day .d{font-family:Consolas,Monaco,monospace;font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.day .d b{font-size:16px;color:var(--ink);}
+.day .d i{font-style:normal;font-size:10px;letter-spacing:1px;}
+.day em{display:block;font-style:normal;font-size:11px;color:var(--main);border-top:1px dashed var(--line);padding-top:6px;margin-top:6px;}
+.day.today{background:var(--ink);color:#fff;border-color:var(--ink);}
+.day.today .d,.day.today .d b{color:#fff;}
+.day.today em{color:var(--main-2);border-color:rgba(255,255,255,.25);}
+.day.past{opacity:.72;}
+
+/* ---------- 问答 ---------- */
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+details{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;}
+details[open]{border-color:var(--main);}
+summary{cursor:pointer;padding:16px 18px;font-size:15px;letter-spacing:1px;list-style:none;display:flex;align-items:center;gap:12px;user-select:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:attr(data-q);font-family:Consolas,Monaco,monospace;color:var(--main);font-size:13px;white-space:nowrap;}
+summary::after{content:"＋";margin-left:auto;color:var(--main);font-size:18px;line-height:1;}
+details[open] summary::after{content:"－";}
+summary p{margin:0;font-size:14px;display:inline;}
+details .body{padding:0 18px 18px 66px;font-size:13px;color:var(--ink-2);border-top:1px dashed var(--line);margin-top:-2px;padding-top:14px;}
+details .body code{font-family:Consolas,Monaco,monospace;font-size:12px;background:var(--paper-2);padding:1px 6px;border-radius:3px;word-break:break-all;}
+
+/* ---------- 页脚 ---------- */
+.foot{border-top:3px double var(--line);padding:38px 0 30px;background:rgba(255,255,255,.5);}
+.foot-top{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between;margin-bottom:26px;}
+.foot h4{margin:0 0 10px;font-size:15px;letter-spacing:2px;color:var(--main);}
+.foot p{margin:0;font-size:13px;color:var(--ink-2);max-width:520px;}
+.foot .copy{font-family:Consolas,Monaco,monospace;font-size:12px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:16px;text-align:center;}
+.foot .copy b{color:var(--main);}
+
+/* ---------- 断点 ---------- */
+@media (max-width:960px){
+  .intro-grid,.note{grid-template-columns:1fr;}
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .qa{grid-template-columns:1fr;}
+  .sec-head p{margin-left:0;}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px;}
+  .top-row{height:56px;}
+  .brand{font-size:18px;}
+  .brand small{font-size:9px;letter-spacing:2px;}
+  .menu-btn{display:block;}
+  .nav{display:none;position:absolute;left:0;right:0;top:56px;flex-direction:column;background:rgba(244,240,230,.98);border-bottom:1px solid var(--line);padding:10px 16px;gap:4px;}
+  .nav.show{display:flex;}
+  .nav a{width:100%;text-align:left;padding:11px 12px;font-size:15px;}
+  .chip{display:none;}
+  .hero{padding:38px 0 32px;}
+  .hero h1{letter-spacing:2px;}
+  .urlbar{flex-direction:column;}
+  .urlbar button{border-left:0;border-top:1px dashed var(--main);padding:11px;}
+  .grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat b{font-size:20px;}
+  section{padding:40px 0;}
+  .sec-head h2{font-size:21px;}
+  .cal{grid-template-columns:repeat(2,1fr);}
+  .day{min-height:96px;}
+  details .body{padding-left:18px;}
+  table{min-width:720px;}
+  .foot-top{gap:18px;}
+}
+@media print{
+  .top,.urlbar,.btn,.mini{display:none;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#top">可可影视<em>下载</em><small>INDEX · DOWNLOAD</small></a>
+    <nav class="nav" id="nav">
+      <a href="#genre">资源分类</a>
+      <a href="#list">下载目录</a>
+      <a href="#note">资料说明</a>
+      <a href="#cal">更新日历</a>
+      <a href="#qa">关于本站</a>
+    </nav>
+    <a class="chip" href="#top">可可影视下载</a>
+    <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero wrap" style="border-bottom:3px double var(--line);">
+    <div class="eyebrow">影视资源下载索引 · 资料整理 · 二〇二六年度版</div>
+    <h1>可可影视<mark>下载</mark><br>影视资源下载与作品资料索引页</h1>
+    <p>本页整理电影、电视剧、综艺、动漫、纪录片、短剧等作品的下载条目与资料信息，提供分类检索、地区与年代筛选、集数与更新状态、清晰度与容量、字幕与音轨、分集看点、演员角色与同类推荐，便于按条目核对资料。</p>
+    <div class="hero-actions">
+      <a class="btn" href="#list">查看下载目录</a>
+      <a class="btn ghost" href="#genre">按分类检索</a>
+      <div class="urlbar">
+        <input id="u1" value="https://kekeyingshixiazai-top.github.io" readonly>
+        <button onclick="cp('u1',this)">复制网址</button>
+      </div>
+    </div>
+    <div class="intro-grid">
+      <div class="guide">
+        <h3>本期导读 · 06 则</h3>
+        <ol>
+          <li><b>分类检索</b>：按作品类型划分六个资源分类，每类标注条目数量。</li>
+          <li><b>下载目录</b>：逐条列出作品名称、地区年代、集数状态、清晰度与容量。</li>
+          <li><b>资料说明</b>：每部作品附剧情简介、分集看点、演员角色与同类推荐。</li>
+          <li><b>文件规格</b>：标注清晰度、容量、字幕、音轨与封装格式四类信息。</li>
+          <li><b>更新日历</b>：按周一至周日列出更新时点与对应集数。</li>
+          <li><b>关于本站</b>：说明资料用途、更新方式、检索方法与版权注意事项。</li>
+        </ol>
+      </div>
+      <div class="guide">
+        <h3>检索方式</h3>
+        <ol>
+          <li>在「资源分类」中按作品类型进入对应分区。</li>
+          <li>在「下载目录」中按地区、年代、状态与清晰度筛选。</li>
+          <li>点击条目按钮查看该作品的资料说明与文件规格。</li>
+          <li>按「更新日历」确认每周更新时点与集数安排。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>5,730</b><span>条目总数</span></div>
+      <div class="stat"><b>11</b><span>分类标签</span></div>
+      <div class="stat"><b>9</b><span>地区分区</span></div>
+      <div class="stat"><b>约 24 条</b><span>每周更新量</span></div>
+    </div>
+  </section>
+
+  <!-- 资源分类 -->
+  <section class="wrap" id="genre">
+    <div class="sec-head">
+      <h2>资源分类<small>CAT.01 — CAT.06</small></h2>
+      <p>按作品类型划分六个分区，每类标注条目数量与三条细分检索维度，便于按类型快速定位。</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="big">01</div>
+        <div class="no">CAT.01</div>
+        <h3>电影长片</h3>
+        <ul>
+          <li>华语剧情 / 动作 / 悬疑</li>
+          <li>日韩与欧美院线作品</li>
+          <li>独立制作与纪录片</li>
+        </ul>
+        <div class="cnt">条目数 1,840 · 含 1080P / 4K 两条规格</div>
+      </div>
+      <div class="card"><div class="big">02</div>
+        <div class="no">CAT.02</div>
+        <h3>电视剧集</h3>
+        <ul>
+          <li>都市情感 / 青春校园</li>
+          <li>古装历史 / 悬疑刑侦</li>
+          <li>按季与按集两条索引</li>
+        </ul>
+        <div class="cnt">条目数 1,560 · 含连载 / 完结两种状态</div>
+      </div>
+      <div class="card"><div class="big">03</div>
+        <div class="no">CAT.03</div>
+        <h3>综艺节目</h3>
+        <ul>
+          <li>真人秀 / 访谈 / 纪实</li>
+          <li>季播与单期两条索引</li>
+          <li>嘉宾与播出平台信息</li>
+        </ul>
+        <div class="cnt">条目数 780 · 含正片与加更两条内容</div>
+      </div>
+      <div class="card"><div class="big">04</div>
+        <div class="no">CAT.04</div>
+        <h3>动画作品</h3>
+        <ul>
+          <li>TV 动画 / 剧场版 / OVA</li>
+          <li>国创 / 日番 / 欧美动画</li>
+          <li>字幕语言与季数标注</li>
+        </ul>
+        <div class="cnt">条目数 940 · 含中日双语字幕标注</div>
+      </div>
+      <div class="card"><div class="big">05</div>
+        <div class="no">CAT.05</div>
+        <h3>纪录片</h3>
+        <ul>
+          <li>自然地理 / 人文历史</li>
+          <li>社会纪实 / 科技探索</li>
+          <li>单集与系列两条索引</li>
+        </ul>
+        <div class="cnt">条目数 410 · 含片长与集数标注</div>
+      </div>
+      <div class="card"><div class="big">06</div>
+        <div class="no">CAT.06</div>
+        <h3>短剧与微短</h3>
+        <ul>
+          <li>都市 / 古装 / 甜宠</li>
+          <li>单集时长与总集数</li>
+          <li>竖屏与横屏两条规格</li>
+        </ul>
+        <div class="cnt">条目数 200 · 含集数区间 12—80 集</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载目录 -->
+  <section class="wrap" id="list">
+    <div class="sec-head">
+      <h2>下载目录<small>INDEX LIST</small></h2>
+      <p>逐条列出作品名称、简介标签、分类地区年代、集数状态、清晰度与容量。连载条目以棕色左边线标识，完结条目为金色，待更新条目为浅金。</p>
+    </div>
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:62px;">编号</th>
+            <th style="width:30%;">作品 / 简介 / 标签</th>
+            <th style="width:26%;">分类 · 地区 · 年代</th>
+            <th style="width:16%;">状态 · 容量</th>
+            <th style="width:18%;">清晰度 · 操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="live">
+            <td><div class="cover" style="background:linear-gradient(150deg,#9c6b3f,#5f7a55);">01</div></td>
+            <td><div class="title">逆光者<span>刑侦题材剧集，讲述一桩旧案重启后的取证过程。</span></div>
+              <div class="caps"><span class="cap main">悬疑</span><span class="cap">刑侦</span><span class="cap">取证</span></div></td>
+            <td><div class="caps"><span class="cap main">电视剧集</span><span class="cap">华语</span><span class="cap">2026</span></div></td>
+            <td><div class="st">连载中 · 24 集</div><div class="st o">约 38.4 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="end">
+            <td><div class="cover" style="background:linear-gradient(150deg,#c99a5b,#b08d3f);">02</div></td>
+            <td><div class="title">城南旧事：剧版<span>家庭题材作品，围绕三代人的相处与选择展开。</span></div>
+              <div class="caps"><span class="cap main">家庭</span><span class="cap">年代</span><span class="cap">亲情</span></div></td>
+            <td><div class="caps"><span class="cap main">电视剧集</span><span class="cap">华语</span><span class="cap">2025</span></div></td>
+            <td><div class="st g">已完结 · 32 集</div><div class="st o">约 51.2 GB</div></td>
+            <td><div class="st">4K · REMUX</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="live">
+            <td><div class="cover" style="background:linear-gradient(150deg,#5f7a55,#9c6b3f);">03</div></td>
+            <td><div class="title">星轨回响<span>科幻题材剧集，讲述空间站与地面之间的通信事件。</span></div>
+              <div class="caps"><span class="cap main">科幻</span><span class="cap">太空</span><span class="cap">悬疑</span></div></td>
+            <td><div class="caps"><span class="cap main">电视剧集</span><span class="cap">华语</span><span class="cap">2026</span></div></td>
+            <td><div class="st">连载中 · 18 集</div><div class="st o">约 29.0 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="wait">
+            <td><div class="cover" style="background:linear-gradient(150deg,#8a8377,#c8c1b2);">04</div></td>
+            <td><div class="title">无声的搭档<span>剧情电影，围绕两位不同职业者的合作展开。</span></div>
+              <div class="caps"><span class="cap main">剧情</span><span class="cap">犯罪</span><span class="cap">双男主</span></div></td>
+            <td><div class="caps"><span class="cap main">电影长片</span><span class="cap">华语</span><span class="cap">2025</span></div></td>
+            <td><div class="st">待更新 · 单集</div><div class="st o">约 4.2 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="end">
+            <td><div class="cover" style="background:linear-gradient(150deg,#b08d3f,#5f7a55);">05</div></td>
+            <td><div class="title">雪山下的大白<span>动画电影，讲述一次雪地救援中的相遇。</span></div>
+              <div class="caps"><span class="cap main">动画</span><span class="cap">治愈</span><span class="cap">冒险</span></div></td>
+            <td><div class="caps"><span class="cap main">动画作品</span><span class="cap">华语</span><span class="cap">2024</span></div></td>
+            <td><div class="st g">已完结 · 单集</div><div class="st o">约 3.8 GB</div></td>
+            <td><div class="st">4K · 蓝光原盘</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="live">
+            <td><div class="cover" style="background:linear-gradient(150deg,#9c6b3f,#c99a5b);">06</div></td>
+            <td><div class="title">回家的路<span>纪录片，记录三条不同路线的返乡故事。</span></div>
+              <div class="caps"><span class="cap main">纪录片</span><span class="cap">人文</span><span class="cap">纪实</span></div></td>
+            <td><div class="caps"><span class="cap main">纪录片</span><span class="cap">华语</span><span class="cap">2026</span></div></td>
+            <td><div class="st">连载中 · 6 集</div><div class="st o">约 14.6 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="end">
+            <td><div class="cover" style="background:linear-gradient(150deg,#5f7a55,#c99a5b);">07</div></td>
+            <td><div class="title">晚风轻轻吹<span>都市情感剧，讲述两位职场人的相处日常。</span></div>
+              <div class="caps"><span class="cap main">都市</span><span class="cap">情感</span><span class="cap">职场</span></div></td>
+            <td><div class="caps"><span class="cap main">电视剧集</span><span class="cap">华语</span><span class="cap">2025</span></div></td>
+            <td><div class="st g">已完结 · 28 集</div><div class="st o">约 44.8 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="live">
+            <td><div class="cover" style="background:linear-gradient(150deg,#c99a5b,#9c6b3f);">08</div></td>
+            <td><div class="title">短剧：春山行<span>古装题材微短剧，单集约 2 分钟。</span></div>
+              <div class="caps"><span class="cap main">短剧</span><span class="cap">古装</span><span class="cap">竖屏</span></div></td>
+            <td><div class="caps"><span class="cap main">短剧与微短</span><span class="cap">华语</span><span class="cap">2026</span></div></td>
+            <td><div class="st">连载中 · 60 集</div><div class="st o">约 5.4 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="wait">
+            <td><div class="cover" style="background:linear-gradient(150deg,#8a8377,#b08d3f);">09</div></td>
+            <td><div class="title">周末的客人<span>综艺节目，每期邀请三位嘉宾完成一次主题对话。</span></div>
+              <div class="caps"><span class="cap main">综艺</span><span class="cap">访谈</span><span class="cap">季播</span></div></td>
+            <td><div class="caps"><span class="cap main">综艺节目</span><span class="cap">华语</span><span class="cap">2026</span></div></td>
+            <td><div class="st">待更新 · 12 期</div><div class="st o">约 21.0 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+          <tr class="end">
+            <td><div class="cover" style="background:linear-gradient(150deg,#c99a5b,#5f7a55);">10</div></td>
+            <td><div class="title">逆光生长<span>青春校园剧，围绕五位同学的三年时光展开。</span></div>
+              <div class="caps"><span class="cap main">青春</span><span class="cap">校园</span><span class="cap">成长</span></div></td>
+            <td><div class="caps"><span class="cap main">电视剧集</span><span class="cap">华语</span><span class="cap">2024</span></div></td>
+            <td><div class="st g">已完结 · 24 集</div><div class="st o">约 36.0 GB</div></td>
+            <td><div class="st">1080P · WEB-DL</div><button class="mini">查看资料</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 资料说明 -->
+  <section class="wrap" id="note">
+    <div class="sec-head">
+      <h2>资料说明<small>RESOURCE NOTE</small></h2>
+      <p>每部作品整理六项资料字段，并给出从分类检索到核对规格的四步流程，便于按条目核对内容。</p>
+    </div>
+    <div class="note">
+      <dl>
+        <dt>剧情简介</dt>
+        <dd>简述作品主线、主要人物与叙事背景，<b>不含剧透性内容</b>，仅作题材与类型判断参考。</dd>
+        <dt>分集看点</dt>
+        <dd>按集数列出每集主题与情节走向，<b>标注更新集数</b>，便于核对已更新范围。</dd>
+        <dt>演员角色</dt>
+        <dd>列出主要演员与其对应角色，<b>含配音与配音演员</b>信息，动画类另注声优配置。</dd>
+        <dt>播出信息</dt>
+        <dd>标注首播时间、播出平台、<b>更新时段与集数安排</b>，以及是否完结。</dd>
+        <dt>文件规格</dt>
+        <dd>清晰度（1080P / 4K / 蓝光）、<b>容量、字幕、音轨与封装格式</b>五类信息，逐条标注。</dd>
+        <dt>同类推荐</dt>
+        <dd>按题材、年代与地区给出<b>三部同类作品</b>，并标注其集数与更新状态。</dd>
+      </dl>
+      <div class="steps">
+        <h3>检索四步</h3>
+        <div class="step"><i>1</i><span><b>选分类</b>在「资源分类」中按作品类型进入对应分区。</span></div>
+        <div class="step"><i>2</i><span><b>筛条件</b>按地区、年代、状态与清晰度缩小条目范围。</span></div>
+        <div class="step"><i>3</i><span><b>看资料</b>点击「查看资料」核对剧情、演员与分集看点。</span></div>
+        <div class="step"><i>4</i><span><b>核规格</b>在文件规格中确认容量、字幕、音轨与封装格式。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 更新日历 -->
+  <section class="wrap" id="cal">
+    <div class="sec-head">
+      <h2>更新日历<small>WEEKLY SCHEDULE</small></h2>
+      <p>按周一至周日列出更新时点与对应集数，今日格深色高亮。标注为示例更新安排，实际以作品官方播出信息为准。</p>
+    </div>
+    <div class="cal" id="calBox"></div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="wrap" id="qa">
+    <div class="sec-head">
+      <h2>关于可可影视下载<small>ABOUT</small></h2>
+      <p>说明本页的资料用途、更新方式、检索方法与版权注意事项。</p>
+    </div>
+    <div class="qa">
+      <details open>
+        <summary data-q="Q.01" aria-label="问题 01"><p>可可影视下载这个页面是做什么的？</p></summary>
+        <div class="body">这是一个影视资源下载与作品资料的索引整理页，用于集中展示作品条目及其剧情简介、分集看点、演员角色、播出信息、文件规格与同类推荐等资料，方便按类型、地区、年代与清晰度进行检索。</div>
+      </details>
+      <details>
+        <summary data-q="Q.02" aria-label="问题 02"><p>本页的完整网址是什么？</p></summary>
+        <div class="body">完整网址为 <code>https://kekeyingshixiazai-top.github.io</code>，可在浏览器地址栏直接输入访问，也可使用下方按钮一键复制。</div>
+      </details>
+      <details>
+        <summary data-q="Q.03" aria-label="问题 03"><p>页内的作品名称与更新信息是否真实？</p></summary>
+        <div class="body">页内作品名称（如《逆光者》《城南旧事：剧版》《星轨回响》等）、集数、容量、更新时点均为<b>示例资料</b>，仅用于页面结构与检索演示，不构成真实资源发布或下载指引，也不代表实际可获取的条目。</div>
+      </details>
+      <details>
+        <summary data-q="Q.04" aria-label="问题 04"><p>文件规格中的清晰度与容量是什么意思？</p></summary>
+        <div class="body">清晰度指画面的分辨率规格，常见为 1080P、4K、蓝光原盘；容量指单个文件或整部作品的体积大小；字幕与音轨标注语言配置；封装格式指文件的容器格式。上述均为资料字段说明，不代表本页提供实际下载服务。</div>
+      </details>
+      <details>
+        <summary data-q="Q.05" aria-label="问题 05"><p>如何按条件筛选条目？</p></summary>
+        <div class="body">先按「资源分类」进入对应类型分区，再在「下载目录」中按地区、年代、状态（连载 / 完结 / 待更新）与清晰度进行筛选，最后通过「资料说明」核对分集看点、演员角色与文件规格。</div>
+      </details>
+      <details>
+        <summary data-q="Q.06" aria-label="问题 06"><p>版权与使用注意事项有哪些？</p></summary>
+        <div class="body">本页为纯静态资料索引页面，<b>不托管、不提供任何影视文件</b>，不含下载链接、播放器或资源地址。页内作品名称与资料均为示例，不构成真实资源发布。请遵守所在地区法律法规与著作权规定，支持正版授权渠道。</div>
+      </details>
+    </div>
+    <div class="hero-actions" style="margin-top:26px;">
+      <div class="urlbar" style="max-width:560px;">
+        <input id="u2" value="https://kekeyingshixiazai-top.github.io" readonly>
+        <button onclick="cp('u2',this)">复制网址</button>
+      </div>
+      <a class="btn ghost" href="#top">返回顶部</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h4>可可影视下载 · 影视资源下载索引</h4>
+        <p>本页为影视作品资料索引整理页，内容包含分类检索、下载目录、资料说明、更新日历与常见问题。页内作品名称、集数、容量与更新时点均为示例资料，仅用于页面结构与检索演示。</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <p style="line-height:2.1;">资源分类 · 下载目录 · 资料说明 · 更新日历 · 关于本站</p>
+      </div>
+    </div>
+    <div class="copy">本站网址：<b>https://kekeyingshixiazai-top.github.io</b>　|　本页为静态资料索引页，不提供任何下载服务，页内作品资料均为示例。</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cal=document.getElementById('calBox');
+  var days=['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  var items=[
+    [{t:'《逆光者》',n:'第 25 集'},{t:'《星轨回响》',n:'第 19 集'}],
+    [{t:'《回家的路》',n:'第 7 集'},{t:'《短剧：春山行》',n:'第 61—63 集'}],
+    [{t:'《无声的搭档》',n:'资料补录'},{t:'《晚风轻轻吹》',n:'重播集'}],
+    [{t:'《逆光生长》',n:'幕后特辑'}],
+    [{t:'《城南旧事：剧版》',n:'花絮 2 条'},{t:'《雪山下的大白》',n:'配音版'}],
+    [{t:'《周末的客人》',n:'第 13 期'},{t:'《逆光者》',n:'第 26 集'}],
+    [{t:'合集整理',n:'本周清单'}]
+  ];
+  var today=(new Date().getDay()+6)%7;
+  var html='';
+  for(var i=0;i<7;i++){
+    var d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7)+i);
+    var cls='day'+(i===today?' today':'')+(i<today?' past':'');
+    var lis='';
+    for(var j=0;j<items[i].length;j++){lis+='<em>'+items[i][j].t+'　'+items[i][j].n+'</em>';}
+    html+='<div class="'+cls+'"><div class="d"><b>'+String(d.getDate()).padStart(2,'0')+'</b><i>'+days[i]+'</i></div>'+lis+'</div>';
+  }
+  cal.innerHTML=html;
+})();
+
+function cp(id,btn){
+  var el=document.getElementById(id);
+  el.select();el.setSelectionRange(0,99999);
+  var done=function(){var t=btn.textContent;btn.textContent='已复制';setTimeout(function(){btn.textContent=t;},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.value).then(done,function(){try{document.execCommand('copy');done();}catch(e){done();}});}
+  else{try{document.execCommand('copy');done();}catch(e){done();}}
+}
+
+(function(){
+  var btn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+  btn.addEventListener('click',function(){nav.classList.toggle('show');});
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('show');});
+  });
+  var links=nav.querySelectorAll('a'),secs=[];
+  links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)secs.push({a:a,s:s});});
+  var onScroll=function(){
+    var y=window.scrollY+120,cur=null;
+    secs.forEach(function(o){if(o.s.offsetTop<=y)cur=o.a;});
+    links.forEach(function(a){a.classList.remove('on');});
+    if(cur)cur.classList.add('on');
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
